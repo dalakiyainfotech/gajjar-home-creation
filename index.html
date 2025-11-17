@@ -230,10 +230,12 @@
         currentIndex = index;
         popupImg.src = images[index].src;
         popup.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
     }
 
     function closePopup() {
         popup.style.display = 'none';
+        document.body.style.overflow = 'auto';
     }
 
     function nextImage() {
@@ -248,6 +250,12 @@
 
     images.forEach((img, index) => {
         img.addEventListener('click', () => openPopup(index));
+    });
+
+    popup.addEventListener('click', (e) => {
+    if (e.target === popup) {
+        closePopup();
+    }
     });
 
     document.querySelector('.next').addEventListener('click', nextImage);
